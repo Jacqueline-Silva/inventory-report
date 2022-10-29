@@ -2,10 +2,12 @@ from inventory_report.reports.simple_report import SimpleReport
 from collections import Counter
 
 
-class CompleteReport:
-    def generate(list_inventory):
+class CompleteReport(SimpleReport):
+    @classmethod
+    def generate(cls, list_inventory):
+        simple_report = super().generate(list_inventory)
         return (
-            f"{SimpleReport.generate(list_inventory)}\n"
+            f"{simple_report}\n"
             "Produtos estocados por empresa:\n"
             f"{CompleteReport.inventory_per_company(list_inventory)}"
         )
